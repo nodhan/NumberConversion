@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity
     Spinner spinner;
     ArrayAdapter<String> arrayAdapter;
     TextView textView;
+    int selection = -1;
     String TAG = "MainAct: NUM_CON";
     int buttonIDS[];
 
@@ -69,9 +70,7 @@ public class MainActivity extends AppCompatActivity
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.d(TAG, "SELECTED ITEM " + spinner.getSelectedItem().toString());
-                Log.d(TAG, "SELECTED ITEM ID " + spinner.getSelectedItemPosition());
-                Log.d(TAG, "POSITION " + i);
+                selection = i;
                 setButtons(i);
             }
 
@@ -112,7 +111,10 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View view) {
                 String value = textView.getText().toString();
                 if (value.trim().length() > 0) {
-                    Snackbar.make(view.getRootView(), "Value: " + value, Snackbar.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), ConvertActivity.class);
+                    intent.putExtra("number", value);
+                    intent.putExtra("type", selection);
+                    startActivity(new Intent(getApplicationContext(), ConvertActivity.class).putExtra("number", value));
                 } else {
                     Snackbar.make(view.getRootView(), "Enter a value to continue!", Snackbar.LENGTH_LONG).show();
                 }
