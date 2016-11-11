@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(getApplicationContext(), ConvertActivity.class);
                     intent.putExtra("number", value);
                     intent.putExtra("type", selection);
-                    startActivity(new Intent(getApplicationContext(), ConvertActivity.class).putExtra("number", value));
+                    startActivity(intent);
                 } else {
                     Snackbar.make(view.getRootView(), "Enter a value to continue!", Snackbar.LENGTH_LONG).show();
                 }
