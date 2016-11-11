@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -89,7 +90,33 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
+        findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                textView.setText(null);
+            }
+        });
 
+        findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = textView.getText().toString();
+                if (value.trim().length() > 0)
+                    textView.setText(value.substring(0, value.length() - 1));
+            }
+        });
+
+        findViewById(R.id.convert).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String value = textView.getText().toString();
+                if (value.trim().length() > 0) {
+                    Snackbar.make(view.getRootView(), "Value: " + value, Snackbar.LENGTH_LONG).show();
+                } else {
+                    Snackbar.make(view.getRootView(), "Enter a value to continue!", Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     /**
