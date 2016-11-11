@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setAdapter(arrayAdapter);
 
-        setVisibility(2);
+        setButtonProperties(2);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -89,8 +89,12 @@ public class MainActivity extends AppCompatActivity
             });
         }
 
+
     }
 
+    /**
+     * Adds id's of buttons to array
+     */
     private void loadButtonIDS() {
         buttonIDS[0] = R.id.zero;
         buttonIDS[1] = R.id.one;
@@ -135,26 +139,36 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Intermediate call to determine count
+     *
+     * @param position input type index
+     */
     private void setButtons(int position) {
         textView.setText(null);
         switch (position) {
             case 2:
             default:
-                setVisibility(10);
+                setButtonProperties(10);
                 break;
             case 0:
-                setVisibility(2);
+                setButtonProperties(2);
                 break;
             case 1:
-                setVisibility(8);
+                setButtonProperties(8);
                 break;
             case 3:
-                setVisibility(16);
+                setButtonProperties(16);
                 break;
         }
     }
 
-    private void setVisibility(int count) {
+    /**
+     * Sets the properties of buttons of button
+     *
+     * @param count number of buttons to be affected
+     */
+    private void setButtonProperties(int count) {
         for (int i = 0; i < buttonIDS.length; i++) {
             Button button = (Button) findViewById(buttonIDS[i]);
 
