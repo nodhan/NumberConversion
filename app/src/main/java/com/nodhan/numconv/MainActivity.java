@@ -1,5 +1,6 @@
 package com.nodhan.numconv;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity
         loadButtonIDS();
 
         textView = (TextView) findViewById(R.id.number);
+        textView.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf"));
 
         ArrayList<String> arrayList = new ArrayList<>();
         Collections.addAll(arrayList, "BINARY", "OCTAL", "DECIMAL", "HEXADECIMAL");
