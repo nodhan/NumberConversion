@@ -1,5 +1,6 @@
 package com.nodhan.numconv;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -156,13 +157,11 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_new) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_history) {
-
+        drawer.closeDrawer(GravityCompat.START);
+        if (id == R.id.nav_history) {
+            startActivity(new Intent(this, HistoryActivity.class));
         }
 
-        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
