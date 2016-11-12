@@ -14,8 +14,10 @@ import java.util.List;
 
 class DBHelper extends SQLiteOpenHelper {
 
+    static String TABLE_NAME = "history";
+
     static DBHelper createDbConnection(Context context) {
-        return new DBHelper(context, "history", null, 1);
+        return new DBHelper(context, TABLE_NAME, null, 1);
     }
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -24,12 +26,12 @@ class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table history('id' integer primary key, 'number' varchar(30), 'conv1' varchar(30), 'conv2' varchar(30), 'conv3' varchar(30), 'type' integer)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME + "('id' integer primary key, 'number' varchar(30), 'conv1' varchar(30), 'conv2' varchar(30), 'conv3' varchar(30), 'type' integer)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("drop table if exists history");
+        sqLiteDatabase.execSQL("drop table if exists " + TABLE_NAME);
         onCreate(sqLiteDatabase);
     }
 
@@ -41,11 +43,14 @@ class DBHelper extends SQLiteOpenHelper {
             contentValues.put("conv" + i, infos.get(i - 1).number);
         }
         contentValues.put("type", type);
-        sqLiteDatabase.insert("history", null, contentValues);
+        sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
 
     Cursor getData() {
-        return this.getReadableDatabase().rawQuery("SELECT * FROM history", null);
+        return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
+    void clearData() {
+        this.getWritableDatabase().execSQL("DELETE FROM " + TABLE_NAME);
+    }
 }
