@@ -10,9 +10,16 @@
     tools:context="com.nodhan.numconv.HistoryActivity"
     tools:showIn="@layout/app_bar_history">
 
+    <TextView
+        android:id="@+id/info_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/info_history" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_history" />
 
 </RelativeLayout>

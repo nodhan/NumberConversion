@@ -77,7 +77,8 @@ public class ConvertActivity extends AppCompatActivity implements NavigationView
             default:
                 convertedNumberInfos = null;
         }
-
+        DBHelper dbHelper = DBHelper.createDbConnection(getApplicationContext());
+        dbHelper.addData(number, convertedNumberInfos, type);
         return convertedNumberInfos;
     }
 
