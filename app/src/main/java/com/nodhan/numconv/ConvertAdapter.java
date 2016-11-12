@@ -15,14 +15,14 @@ import java.util.List;
 class ConvertAdapter extends RecyclerView.Adapter<ConvertAdapter.ConvertedNumberViewHolder> {
 
     private List<ConvertedNumberInfo> convertedNumberInfoList;
-    String type[] = {"BINARY", "OCTAL", "DECIMAL", "HEXADECIMAL"};
+    private String type[] = {"BINARY", "OCTAL", "DECIMAL", "HEXADECIMAL"};
     
     ConvertAdapter (List<ConvertedNumberInfo> convertedNumberInfoList) {
         this.convertedNumberInfoList = convertedNumberInfoList;
     }
     @Override
     public ConvertedNumberViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_convert_layout, parent, false);
         return new ConvertedNumberViewHolder(itemView);
     }
 

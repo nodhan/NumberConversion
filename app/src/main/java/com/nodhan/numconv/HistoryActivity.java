@@ -22,7 +22,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_convert);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_history);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -49,7 +49,7 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
 
         drawer.closeDrawer(GravityCompat.START);
         if (id == R.id.nav_new) {
-            startActivity(new Intent(this, MainActivity.class));
+            finish();
         }
 
         return true;
