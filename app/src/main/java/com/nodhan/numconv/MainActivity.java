@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(getApplicationContext(), ConvertActivity.class);
                     intent.putExtra("number", value);
                     intent.putExtra("type", selection);
+                    textView.setText(null);
                     startActivity(intent);
                 } else {
                     Snackbar.make(view.getRootView(), "Enter a value to continue!", Snackbar.LENGTH_LONG).show();

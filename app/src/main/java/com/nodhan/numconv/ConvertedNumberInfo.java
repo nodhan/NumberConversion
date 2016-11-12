@@ -5,5 +5,6 @@ package com.nodhan.numconv;
  */
 
 public class ConvertedNumberInfo {
-    String type, number;
+    String number;
+    int type;
 }

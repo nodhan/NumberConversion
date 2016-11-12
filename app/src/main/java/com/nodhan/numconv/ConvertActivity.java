@@ -1,6 +1,7 @@
 package com.nodhan.numconv;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,19 +13,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ConvertActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawer;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convert);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_convert);
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -48,10 +50,33 @@ public class ConvertActivity extends AppCompatActivity implements NavigationView
 
         ConvertAdapter ca = new ConvertAdapter(convertNumber(number, type));
         recList.setAdapter(ca);
+
+        textView = (TextView) findViewById(R.id.convert_info);
+        textView.setText(new StringBuilder("The equivalents of ").append(number).append(" are:"));
+        textView.setTextSize(20);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/Roboto-Regular.ttf");
+        textView.setTypeface(typeface);
     }
 
     private List<ConvertedNumberInfo> convertNumber(String number, int type) {
-        List<ConvertedNumberInfo> convertedNumberInfos = new ArrayList<>();
+        List<ConvertedNumberInfo> convertedNumberInfos;
+        Converter converter = new Converter(number);
+        switch (type) {
+            case 0:
+                convertedNumberInfos = converter.binaryToOther();
+                break;
+            case 1:
+                convertedNumberInfos = converter.octalToOther();
+                break;
+            case 2:
+                convertedNumberInfos = converter.decimalToOther();
+                break;
+            case 3:
+                convertedNumberInfos = converter.hexaToOther();
+                break;
+            default:
+                convertedNumberInfos = null;
+        }
 
         return convertedNumberInfos;
     }

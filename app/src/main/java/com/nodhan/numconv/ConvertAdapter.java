@@ -15,6 +15,7 @@ import java.util.List;
 class ConvertAdapter extends RecyclerView.Adapter<ConvertAdapter.ConvertedNumberViewHolder> {
 
     private List<ConvertedNumberInfo> convertedNumberInfoList;
+    String type[] = {"BINARY", "OCTAL", "DECIMAL", "HEXADECIMAL"};
     
     ConvertAdapter (List<ConvertedNumberInfo> convertedNumberInfoList) {
         this.convertedNumberInfoList = convertedNumberInfoList;
@@ -28,8 +29,8 @@ class ConvertAdapter extends RecyclerView.Adapter<ConvertAdapter.ConvertedNumber
     @Override
     public void onBindViewHolder(ConvertedNumberViewHolder holder, int position) {
         ConvertedNumberInfo convertedNumberInfo = convertedNumberInfoList.get(position);
-        holder.type.setText(convertedNumberInfo.type);
-        holder.number.setText(convertedNumberInfo.number);
+        holder.type.setText(type[convertedNumberInfo.type]);
+        holder.number.setText(convertedNumberInfo.number.toUpperCase());
     }
 
     @Override
