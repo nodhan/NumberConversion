@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
     ArrayAdapter<String> arrayAdapter;
     TextView textView;
     int selection = -1;
-    String TAG = "MainAct: NUM_CON";
     int buttonIDS[];
 
     @Override

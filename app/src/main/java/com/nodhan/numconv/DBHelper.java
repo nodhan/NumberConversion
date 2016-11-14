@@ -35,6 +35,13 @@ class DBHelper extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
+    /**
+     * Adds data into database
+     *
+     * @param number - number to be inserted
+     * @param infos - converted number
+     * @param type - type of number that is converted
+     */
     void addData(String number, List<ConvertedNumberInfo> infos, int type) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -46,10 +53,18 @@ class DBHelper extends SQLiteOpenHelper {
         sqLiteDatabase.insert(TABLE_NAME, null, contentValues);
     }
 
+    /**
+     * To get data form database
+     *
+     * @return cursor object with all data
+     */
     Cursor getData() {
         return this.getReadableDatabase().rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 
+    /**
+     * Clears data in database
+     */
     void clearData() {
         this.getWritableDatabase().execSQL("DELETE FROM " + TABLE_NAME);
     }

@@ -75,6 +75,8 @@ public class HistoryActivity extends AppCompatActivity implements NavigationView
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            drawer.removeAllViews();
+            finish();
             super.onBackPressed();
         }
     }
